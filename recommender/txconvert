@@ -1,0 +1,122 @@
+#!/usr/bin/env python3.5
+
+from scipy.sparse import coo_matrix
+# from sklearn.cluster import AgglomerativeClustering
+from sklearn.cluster import KMeans
+
+import pandas as pd
+import numpy as np
+import os
+import traceback
+import sys
+
+
+# These are the paths to where SageMaker mounts interesting things in your
+# container.
+
+prefix = '/opt/ml/'
+
+input_path = prefix + 'input/data'
+output_path = os.path.join(prefix, 'output')
+model_path = os.path.join(prefix, 'model')
+
+# This algorithm has a single channel of input data called 'training'
+# Since we run in File mode, the input files are copied to the directory
+# specified here.
+channel_name = 'training'
+training_path = os.path.join(input_path, channel_name)
+
+
+def train():
+    print("start training...")
+    try:
+        input_files = [os.path.join(training_path, file)
+                       for file in os.listdir(training_path)]
+        if len(input_files) == 0:
+            raise ValueError(('There are no files in {}.\n' +
+                              'This usually indicates that the channel ({}) was incorrectly specified,\n' +
+                              'the data specification in S3 was incorrectly specified or the role specified\n' +
+                              'does not have permission to access the data.').format(training_path, channel_name)) 
+        raw_data = [read_user_item_rating_tx(file) for file in input_files]
+        user_item_rating_df = pd.concat(raw_data)
+        user_readed_coo_matrix = convert_2_user_readed_coo_matrix(
+            user_item_rating_df)
+        cluster_users(user_readed_coo_matrix)
+        # print(user_readed_coo_matrix)
+    except Exception as e:
+        # Write out an error file. This will be returned as the failureReason
+        # in the DescribeTrainingJob result.
+        trc = traceback.format_exc()
+        with open(os.path.join(output_path, 'failure'), 'w') as s:
+            s.write('Exception during training: ' + str(e) + '\n' + trc)
+        # Printing this causes the exception to be in the training job logs
+        print('Exception during training: ' + str(e) + '\n' + trc,
+              file=sys.stderr)
+        # A non-zero exit code causes the training job to be marked as Failed.
+        sys.exit(255)
+
+
+def read_user_item_rating_tx(filepath):
+    print("try to read user item rating file: {}".format(filepath))
+    dtype_dict = {
+        "user_id": np.int32,
+        "item_id": np.int32,
+        "rating": np.float16
+    }
+    user_item_rating_df = pd.read_csv(
+        filepath,
+        skiprows=1,
+        names=['user_id', 'item_id', 'rating'],
+        dtype=dtype_dict,
+        usecols=[0, 1, 2]
+    )
+    df_mem_usage = user_item_rating_df.memory_usage(index=True).sum()
+    print("read user item rating file done")
+    print("memory usage: {}".format(df_mem_usage))
+    return user_item_rating_df
+
+
+def convert_2_user_readed_coo_matrix(user_item_rating_df):
+    coo_row = user_item_rating_df.user_id.values
+    coo_col = user_item_rating_df.item_id.values
+    coo_data = user_item_rating_df.rating.values
+    user_readed_coo_matrix = coo_matrix(
+        (coo_data.astype(np.double), (coo_row, coo_col))
+    )
+    # has_nan = np.isnan(raw_user_readed_coo_matrix.data).any()
+
+    return user_readed_coo_matrix
+
+
+def cluster_users(user_readed_coo_matrix):
+    """AgglomerativeClustering in sklearn requires dense array as input which
+    will cause memory error when input is large dataset. At this moment, use
+    KMean clustering instead though it only supports euclidean similarity.
+    clustering = AgglomerativeClustering(
+        n_clusters=4,
+        affinity='cosine',
+        linkage='average'
+    )
+    Args:
+        user_readed_coo_matrix (scipy.sparse.coo_matrix): user-item-score matrix 
+                                                          with coordinate foramt
+                                                          as sparse matrix to
+                                                          save space
+    """
+    clustering = KMeans(
+        n_clusters=4,
+        random_state=0
+    )
+    # print("coo matrix to dense matrix")
+    # dense_user_readed_matrix = user_readed_coo_matrix.toarray()
+    # convert all zero to 1
+    # dense_user_readed_matrix[dense_user_readed_matrix == 0] = 1
+    # print(dense_user_readed_matrix)
+    # clustering.fit(dense_user_readed_matrix)
+    clustering.fit(user_readed_coo_matrix)
+    print(clustering.labels_)
+
+
+if __name__ == "__main__":
+    train()
+    sys.exit(0)
