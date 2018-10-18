@@ -1,0 +1,5 @@
+Exception during training: [Errno 2] No such file or directory: '/opt/ml/model/news-recommender.pkl'
+Traceback (most recent call last):
+  File "/opt/program/train", line 37, in train
+    with open(os.path.join(model_path, 'news-recommender.pkl'), 'wb') as out:
+FileNotFoundError: [Errno 2] No such file or directory: '/opt/ml/model/news-recommender.pkl'

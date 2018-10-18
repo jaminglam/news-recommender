@@ -1,0 +1,382 @@
+item_id,tag,tag_id
+60756,funny,6
+109487,sci-fi,10
+410,dark comedy,9
+2124,quirky,8
+2953,funny,6
+3114,Disney,5
+3114,funny,6
+5388,atmospheric,1
+6541,superhero,3
+27660,sci-fi,10
+27706,dark comedy,9
+27706,quirky,8
+34150,superhero,3
+46976,surreal,4
+68848,funny,6
+71535,dark comedy,9
+71535,funny,6
+87430,superhero,3
+88405,funny,6
+99114,funny,6
+103042,superhero,3
+116897,dark comedy,9
+119141,funny,6
+135536,superhero,3
+136864,superhero,3
+179401,funny,6
+183611,funny,6
+260,sci-fi,10
+101142,funny,6
+2387,dark comedy,9
+7254,sci-fi,10
+8957,suspense,12
+3793,superhero,3
+4226,psychology,11
+5388,thought-provoking,2
+6283,sci-fi,10
+27156,psychology,11
+4878,atmospheric,1
+4878,surreal,4
+7147,surreal,4
+7361,thought-provoking,2
+97938,surreal,4
+126548,funny,6
+6711,atmospheric,1
+778,dark comedy,9
+82459,atmospheric,1
+364,Disney,5
+153,superhero,3
+61323,dark comedy,9
+39,funny,6
+48516,suspense,12
+91529,superhero,3
+50,suspense,12
+223,quirky,8
+288,dark comedy,9
+527,thought-provoking,2
+541,sci-fi,10
+589,sci-fi,10
+608,dark comedy,9
+628,psychology,11
+628,suspense,12
+628,thought-provoking,2
+1200,sci-fi,10
+1200,suspense,12
+1219,psychology,11
+1258,atmospheric,1
+1258,suspense,12
+1625,suspense,12
+2160,suspense,12
+2329,thought-provoking,2
+2571,sci-fi,10
+2959,dark comedy,9
+2959,psychology,11
+2959,thought-provoking,2
+3176,psychology,11
+3176,suspense,12
+3186,psychology,11
+3527,sci-fi,10
+8950,psychology,11
+48516,atmospheric,1
+74458,thought-provoking,2
+79132,sci-fi,10
+79132,thought-provoking,2
+81591,atmospheric,1
+81591,surreal,4
+104879,atmospheric,1
+112515,atmospheric,1
+750,dark comedy,9
+58559,psychology,11
+58559,superhero,3
+28,In Netflix queue,0
+40,In Netflix queue,0
+162,In Netflix queue,0
+224,psychology,11
+232,In Netflix queue,0
+279,In Netflix queue,0
+290,In Netflix queue,0
+326,In Netflix queue,0
+363,In Netflix queue,0
+531,In Netflix queue,0
+588,Disney,5
+592,superhero,3
+594,Disney,5
+595,Disney,5
+596,Disney,5
+616,Disney,5
+728,In Netflix queue,0
+800,In Netflix queue,0
+1010,Disney,5
+1022,Disney,5
+1025,Disney,5
+1028,Disney,5
+1029,Disney,5
+1030,Disney,5
+1032,Disney,5
+1033,Disney,5
+1041,In Netflix queue,0
+1080,religion,7
+1147,In Netflix queue,0
+1185,In Netflix queue,0
+1189,In Netflix queue,0
+1277,In Netflix queue,0
+1280,In Netflix queue,0
+1282,Disney,5
+1354,religion,7
+1361,In Netflix queue,0
+1363,religion,7
+1377,superhero,3
+1423,In Netflix queue,0
+1446,In Netflix queue,0
+1542,In Netflix queue,0
+1672,In Netflix queue,0
+1797,In Netflix queue,0
+1893,In Netflix queue,0
+1900,In Netflix queue,0
+1942,In Netflix queue,0
+2054,Disney,5
+2065,In Netflix queue,0
+2071,In Netflix queue,0
+2078,Disney,5
+2080,Disney,5
+2085,Disney,5
+2351,In Netflix queue,0
+2360,In Netflix queue,0
+2390,In Netflix queue,0
+2442,In Netflix queue,0
+2467,religion,7
+2640,superhero,3
+2641,superhero,3
+2642,superhero,3
+2648,In Netflix queue,0
+2677,In Netflix queue,0
+2723,superhero,3
+2905,In Netflix queue,0
+2939,In Netflix queue,0
+3007,In Netflix queue,0
+3052,religion,7
+3060,In Netflix queue,0
+3077,In Netflix queue,0
+3192,In Netflix queue,0
+3250,In Netflix queue,0
+3338,In Netflix queue,0
+3456,In Netflix queue,0
+3469,religion,7
+3498,In Netflix queue,0
+3507,In Netflix queue,0
+3559,In Netflix queue,0
+3566,religion,7
+3676,In Netflix queue,0
+3859,In Netflix queue,0
+3877,superhero,3
+3951,In Netflix queue,0
+3994,superhero,3
+4117,In Netflix queue,0
+4174,In Netflix queue,0
+4189,religion,7
+4190,religion,7
+4194,In Netflix queue,0
+4218,In Netflix queue,0
+4312,In Netflix queue,0
+4356,In Netflix queue,0
+4404,In Netflix queue,0
+4688,In Netflix queue,0
+4920,psychology,11
+4969,In Netflix queue,0
+5120,In Netflix queue,0
+5213,religion,7
+5224,In Netflix queue,0
+5238,In Netflix queue,0
+5291,In Netflix queue,0
+5294,religion,7
+5304,In Netflix queue,0
+5349,superhero,3
+5475,In Netflix queue,0
+5498,In Netflix queue,0
+5721,In Netflix queue,0
+6027,In Netflix queue,0
+6041,In Netflix queue,0
+6228,In Netflix queue,0
+6244,In Netflix queue,0
+6333,superhero,3
+6373,religion,7
+6375,In Netflix queue,0
+6377,Disney,5
+6452,In Netflix queue,0
+6466,In Netflix queue,0
+6516,In Netflix queue,0
+6591,religion,7
+6668,In Netflix queue,0
+6713,In Netflix queue,0
+6724,In Netflix queue,0
+6768,religion,7
+6786,In Netflix queue,0
+6981,religion,7
+7023,In Netflix queue,0
+7025,In Netflix queue,0
+7069,In Netflix queue,0
+7071,In Netflix queue,0
+7088,In Netflix queue,0
+7141,In Netflix queue,0
+7218,In Netflix queue,0
+7301,religion,7
+7318,religion,7
+7618,In Netflix queue,0
+7700,In Netflix queue,0
+7748,In Netflix queue,0
+7792,In Netflix queue,0
+7924,In Netflix queue,0
+7926,In Netflix queue,0
+7934,psychology,11
+8014,In Netflix queue,0
+8033,In Netflix queue,0
+8094,In Netflix queue,0
+8183,In Netflix queue,0
+8190,In Netflix queue,0
+8197,In Netflix queue,0
+8275,In Netflix queue,0
+8338,religion,7
+8366,religion,7
+8379,In Netflix queue,0
+8580,In Netflix queue,0
+8607,In Netflix queue,0
+8609,In Netflix queue,0
+8765,In Netflix queue,0
+8784,psychology,11
+8838,In Netflix queue,0
+8938,psychology,11
+8961,Disney,5
+8961,superhero,3
+8998,In Netflix queue,0
+25855,In Netflix queue,0
+25865,In Netflix queue,0
+25952,In Netflix queue,0
+26131,In Netflix queue,0
+26242,In Netflix queue,0
+26776,In Netflix queue,0
+27731,In Netflix queue,0
+27741,In Netflix queue,0
+27790,religion,7
+31658,In Netflix queue,0
+31923,In Netflix queue,0
+32160,In Netflix queue,0
+32371,In Netflix queue,0
+34437,In Netflix queue,0
+34482,In Netflix queue,0
+35015,In Netflix queue,0
+36535,In Netflix queue,0
+37240,In Netflix queue,0
+37733,In Netflix queue,0
+38061,In Netflix queue,0
+39234,In Netflix queue,0
+39292,In Netflix queue,0
+40583,In Netflix queue,0
+40629,In Netflix queue,0
+41997,In Netflix queue,0
+42002,In Netflix queue,0
+42740,In Netflix queue,0
+541,atmospheric,1
+593,psychology,11
+593,suspense,12
+1089,religion,7
+1196,sci-fi,10
+3000,atmospheric,1
+3000,surreal,4
+3994,atmospheric,1
+4725,psychology,11
+4725,suspense,12
+4878,psychology,11
+4878,thought-provoking,2
+7361,surreal,4
+56174,religion,7
+57669,dark comedy,9
+62336,surreal,4
+68358,sci-fi,10
+68791,sci-fi,10
+69757,quirky,8
+72998,sci-fi,10
+79132,surreal,4
+112552,suspense,12
+3949,psychology,11
+69122,funny,6
+72998,thought-provoking,2
+79132,psychology,11
+79132,suspense,12
+89745,superhero,3
+90439,suspense,12
+105504,suspense,12
+101,quirky,8
+1203,thought-provoking,2
+1237,atmospheric,1
+1260,atmospheric,1
+1653,thought-provoking,2
+1916,quirky,8
+1921,atmospheric,1
+1921,surreal,4
+2138,atmospheric,1
+3266,dark comedy,9
+3676,surreal,4
+4144,atmospheric,1
+4552,atmospheric,1
+4552,surreal,4
+4878,quirky,8
+5673,quirky,8
+5673,surreal,4
+6818,atmospheric,1
+7024,thought-provoking,2
+7361,atmospheric,1
+7361,quirky,8
+25771,surreal,4
+27773,surreal,4
+30810,quirky,8
+48394,atmospheric,1
+48780,atmospheric,1
+56782,atmospheric,1
+57502,surreal,4
+58301,thought-provoking,2
+71899,dark comedy,9
+71899,quirky,8
+74791,surreal,4
+94959,quirky,8
+99764,surreal,4
+99917,atmospheric,1
+104875,quirky,8
+106766,atmospheric,1
+106766,funny,6
+108932,quirky,8
+109487,thought-provoking,2
+112421,quirky,8
+112852,funny,6
+114627,atmospheric,1
+122916,quirky,8
+134170,funny,6
+139644,atmospheric,1
+143367,thought-provoking,2
+148626,funny,6
+148881,surreal,4
+152077,suspense,12
+155288,suspense,12
+155288,thought-provoking,2
+156605,quirky,8
+164179,thought-provoking,2
+167746,funny,6
+176371,atmospheric,1
+180031,atmospheric,1
+4446,sci-fi,10
+293,quirky,8
+296,atmospheric,1
+296,dark comedy,9
+296,funny,6
+296,quirky,8
+296,suspense,12
+296,thought-provoking,2
+924,atmospheric,1
+924,sci-fi,10
+924,surreal,4
+1732,dark comedy,9
+1732,funny,6
+1732,quirky,8
+2959,atmospheric,1
+2959,quirky,8
+2959,surreal,4

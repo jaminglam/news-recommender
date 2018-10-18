@@ -1,0 +1,118 @@
+#!/usr/bin/env python3.5
+
+import pandas as pd
+import numpy as np
+import os
+import traceback
+import sys
+import pickle
+import json
+from model.news_recommender import NewsRecommender
+
+
+# These are the paths to where SageMaker mounts interesting things in your
+# container.
+
+prefix = '/opt/ml/'
+
+input_path = prefix + 'input/data'
+output_path = os.path.join(prefix, 'output')
+model_path = os.path.join(prefix, 'model')
+sagemaker_config_path = os.path.join(prefix + 'input', 'config')
+
+# This algorithm has a single channel of input data called 'training'
+# Since we run in File mode, the input files are copied to the directory
+# specified here.
+channel_training_rating = 'training-rating'
+channel_training_item_tag = 'training-item-tag'
+
+
+def train():
+    print("start training...")
+    try:
+        user_item_rating_df = read_channel_data(channel_training_rating)
+        item_tag_df = read_channel_data(channel_training_item_tag)
+        hyperparameter_path = os.path.join(
+            sagemaker_config_path, 'hyperparameters.json')
+        with open(hyperparameter_path) as hyperparameter_file:
+            hyperparameters = json.load(hyperparameter_file)
+        print(hyperparameters)
+        n_clusters = hyperparameters['n_clusters']
+        print('n_clusters: {}'.format(n_clusters))
+        recommender = NewsRecommender(n_clusters=int(n_clusters))
+        recommender.fit(user_item_rating_df, item_tag_df)
+        with open(os.path.join(model_path, 'news-recommender.pkl'), 'wb') as out:
+            pickle.dump(recommender, out, protocol=0)
+        print('training complete')
+    except Exception as e:
+        # Write out an error file. This will be returned as the failureReason
+        # in the DescribeTrainingJob result.
+        trc = traceback.format_exc()
+        with open(os.path.join(output_path, 'failure'), 'w') as s:
+            s.write('Exception during training: ' + str(e) + '\n' + trc)
+        # Printing this causes the exception to be in the training job logs
+        print('Exception during training: ' + str(e) + '\n' + trc,
+              file=sys.stderr)
+        # A non-zero exit code causes the training job to be marked as Failed.
+        sys.exit(255)
+
+
+def read_channel_data(channel_name):
+    training_path = os.path.join(input_path, channel_name)
+    input_files = [os.path.join(training_path, file)
+                   for file in os.listdir(training_path)]
+    if len(input_files) == 0:
+        raise ValueError(('There are no files in {}.\n' +
+                          'This usually indicates that the channel ({}) was incorrectly specified,\n' +
+                          'the data specification in S3 was incorrectly specified or the role specified\n' +
+                          'does not have permission to access the data.').format(training_path, channel_name))
+    if channel_name == channel_training_rating:
+        user_item_rating_df_list = [read_user_item_rating_df(file)
+                                    for file in input_files]
+        user_item_rating_df = pd.concat(user_item_rating_df_list)
+        return user_item_rating_df
+    elif channel_name == channel_training_item_tag:
+        item_tag_df_list = [read_item_tag_df(file) for file in input_files]
+        item_tag_df = pd.concat(item_tag_df_list)
+        return item_tag_df
+    else:
+        raise ValueError("invalid channel name {}".format(channel_name))
+
+
+def read_item_tag_df(filepath):
+    print("try to read item tag file: {}".format(filepath))
+    item_tag_df = pd.read_csv(
+        filepath,
+        skiprows=1,
+        names=['item_id', 'tag', 'tag_id'],
+        usecols=[0, 1, 2]
+    )
+    df_mem_usage = item_tag_df.memory_usage(index=True).sum()
+    print("read item tag file done")
+    print("memory usage: {}".format(df_mem_usage))
+    return item_tag_df
+
+
+def read_user_item_rating_df(filepath):
+    print("try to read user item rating file: {}".format(filepath))
+    dtype_dict = {
+        "user_id": np.int32,
+        "item_id": np.int32,
+        "rating": np.float16
+    }
+    user_item_rating_df = pd.read_csv(
+        filepath,
+        skiprows=1,
+        names=['user_id', 'item_id', 'rating'],
+        dtype=dtype_dict,
+        usecols=[0, 1, 2]
+    )
+    df_mem_usage = user_item_rating_df.memory_usage(index=True).sum()
+    print("read user item rating file done")
+    print("memory usage: {}".format(df_mem_usage))
+    return user_item_rating_df
+
+
+if __name__ == "__main__":
+    train()
+    sys.exit(0)

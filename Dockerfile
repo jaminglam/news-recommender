@@ -21,7 +21,7 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 # a significant amount of space. These optimizations save a fair amount of space in the
 # image, which reduces start up time.
 RUN wget https://bootstrap.pypa.io/3.3/get-pip.py && python3.5 get-pip.py && \
-    pip3 install numpy==1.14.3 scipy scikit-learn==0.19.1 xgboost==0.72.1 pandas==0.22.0 flask gevent gunicorn && \
+    pip3 install numpy==1.14.3 scipy scikit-learn==0.19.1 xgboost==0.72.1 pandas==0.22.0 flask gevent gunicorn joblib && \
         (cd /usr/local/lib/python3.5/dist-packages/scipy/.libs; rm *; ln ../../numpy/.libs/* .) && \
         rm -rf /root/.cache
 
